@@ -1,0 +1,49 @@
+<div *ngIf="patient" class="patient-details">
+  <div class="actions">
+    <button routerLink="/doctor/patients">Back to Patients</button>
+    <button [routerLink]="['/doctor/patient/update/', patientId]">Edit Patient</button>
+    <button class="schedule-btn" routerLink="/doctor/appointments"
+      [queryParams]="{patientId: patient.userId, schedule: 'true'}">Schedule Appointment</button>
+  </div>
+  <h2>Patient Details: {{ patient.forname }} {{ patient.surname }}</h2>
+
+  <section class="patient-info">
+    <h3>Patient Overview</h3>
+    <p><strong>Name:</strong> {{ patient.forname }} {{ patient.surname }}</p>
+    <p><strong>Email:</strong> {{ patient.email }}</p>
+    <p><strong>Phone:</strong> {{ patient.telNr }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Address:</strong> {{ patient.address }}</p>
+  </section>
+
+  <section class="medical-history">
+    <h3>Medical History</h3>
+    <p><strong>Allergies:</strong> {{ patient.medicalRecord?.allergies }}</p>
+    <p><strong>Conditions:</strong> {{ patient.medicalRecord?.conditions?.join(', ') }}</p>
+    <p><strong>Previous Treatments:</strong></p>
+    <ul>
+      <li *ngFor="let treatment of patient.medicalRecord?.previousTreatments">
+        {{ treatment }}
+      </li>
+    </ul>
+  </section>
+
+  <section class="xray-records">
+    <h3>X-Ray Records</h3>
+    <div *ngFor="let record of patient.xrayRecords">
+      <p><strong>Upload Date:</strong> {{ formatDate(record.uploadDate) }}</p>
+      <img [src]="record.image" alt="X-Ray" class="xray-img" />
+      <p><strong>Assisted Analysis:</strong> {{ record.analysis }}</p>
+      <p><strong>Note Left:</strong> {{ record.doctorNote }}</p>
+    </div>
+    <br>
+    <a routerLink="/doctor/xrays" class="btn">Upload X-rays</a>
+  </section>
+
+  <section class="doctor-notes">
+    <h3>Doctor Notes</h3>
+    <p>{{ patient.medicalRecord?.doctorNotes }}</p>
+  </section>
+
+  
+</div>

@@ -1,0 +1,287 @@
+.cal-box {
+    min-height: 670px;
+}
+.calendar_container {
+    max-width: 500px;
+    margin: 30px 30px;
+    padding: 20px;
+    background: #8ba2ba;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+}
+
+/* Centering the controls */
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+/* Center the month title */
+.calendar-controls h2 {
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Style navigation buttons */
+.calendar-controls button {
+    background: #041e3a;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.calendar-controls button:hover {
+    background: #0056b3;
+}
+
+/* Center and properly space the grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    justify-content: center; /* Center grid horizontally */
+    align-items: center;
+}
+
+/* Keep box sizes but center numbers */
+.calendar-day {
+    border: 1px solid #ddd;
+    padding: 8px;
+    min-height: 15px;
+    min-width: 50px;
+    text-align: center;
+    border-radius: 8px;
+    background: #fdfdfd;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Keep header styling */
+.calendar-day.header {
+    background: #041e3a;
+    min-height: 15px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.calendar-day.header:hover {
+    transform: none;
+}
+
+/* Highlight days with appointments */
+.calendar-day.has-appointment {
+    background-color: #8196b3;
+    border: 2px solid #041e3a;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Remove visibility instead of breaking layout */
+.calendar-day.empty {
+    visibility: hidden;
+}
+
+/* Hover effect */
+.calendar-day:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 450px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Modal Header */
+.modal-content h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #041e3a;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 2px solid #041e3a;
+    padding-bottom: 10px;
+}
+
+/* List of Appointment Details */
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-content li {
+    background: #f7f9fc;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Label Styling */
+.modal-content strong {
+    color: #041e3a;
+}
+
+/* Inputs */
+.modal-content input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Buttons */
+.modal-content .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Accept Button */
+.modal-content .btn.accept {
+    background: #28a745;
+    color: white;
+    border: none;
+}
+
+.modal-content .btn.accept:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Decline Button */
+.modal-content .btn.decline {
+    background: #dc3545;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+
+.modal-content .btn.decline:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* Update Button */
+.modal-content .btn.update {
+    background: #041e3a;
+    color: white;
+    border: none;
+    margin-top: 15px;
+}
+
+.modal-content .btn.update:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Close Button */
+.modal-content .btn.close {
+    background: #6c757d;
+    color: white;
+    border: none;
+    margin-top: 15px;
+}
+
+.modal-content .btn.close:hover {
+    background: #545b62;
+    transform: scale(1.05);
+}
+
+.past-appointment {
+    opacity: 0.6;
+    background-color: #f0f0f0;
+  }
+  
+  .btn.update[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  input[disabled] {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .calendar-controls {
+        flex-direction: row;
+    }
+
+    .calendar-controls h2 {
+        font-size: 18px;
+    }
+
+    .calendar-day {
+        min-height: 20px;
+        min-width: 10px;
+        font-size: 14px;
+    }
+    .modal-content {
+        width: 95%;
+        max-width: 400px;
+    }
+
+    .modal-content h3 {
+        font-size: 20px;
+    }
+
+    .modal-content li {
+        font-size: 14px;
+    }
+
+    .modal-content .btn {
+        font-size: 14px;
+        padding: 5px;
+    }
+}
+

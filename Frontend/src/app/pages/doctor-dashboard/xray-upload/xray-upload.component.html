@@ -1,0 +1,53 @@
+<div class="upload-container">
+  <h2 class="section-title">Upload X-ray Image</h2>
+
+  <div class="form-group">
+    <label for="patient">Select Patient:</label>
+    <select [(ngModel)]="patientId" name="patient" class="styled-select" [disabled]="isAnalyzing">
+      <option *ngFor="let patient of patients" [value]="patient.userId">
+        {{ patient.forname }} {{ patient.surname }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="file">Choose File:</label>
+    <input type="file" id="file" (change)="onFileSelected($event)" class="file-input" [disabled]="isAnalyzing" />
+  </div>
+
+  <div class="form-group">
+    <button type="button" (click)="analyzeImage()" [disabled]="isAnalyzing || !selectedFile || !patientId"
+      class="analyze-button">
+      {{ isAnalyzing ? 'Analyzing...' : 'Analyze' }}
+    </button>
+    <div *ngIf="isAnalyzing" class="loading-spinner"></div>
+  </div>
+
+  <div *ngIf="result" class="form-group">
+    <h2> <label for="doctorNote">Doctor's Note (optional):</label>
+    </h2>
+    <textarea id="doctorNote" [(ngModel)]="doctorNote" name="doctorNote" class="styled-textarea"
+      placeholder="Enter any notes"></textarea>
+
+    <div class="note-actions">
+      <button type="button" (click)="updateDoctorNote()" [disabled]="!doctorNote" class="analyze-button">
+        Save Note
+      </button>
+      <button type="button" (click)="exitOperation()" class="analyze-button">
+        Done without note
+      </button>
+    </div>
+  </div>
+
+
+  <p *ngIf="uploadMessage" class="message">{{ uploadMessage }}</p>
+
+  <div *ngIf="result" class="results-panel">
+    <h2 class="results-title"> Analysis Result</h2>
+    <p class="result-text">{{ result }}</p>
+    <p *ngIf="cariesAreaRatio" class="result-text">Caries Area Ratio: <strong>{{ (cariesAreaRatio * 100).toFixed(2)
+        }}%</strong></p>
+    <img *ngIf="overlayImage" [src]="overlayImage" alt="Caries Result" class="result-image" />
+  </div>
+
+</div>

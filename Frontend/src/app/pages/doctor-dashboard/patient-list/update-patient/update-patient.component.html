@@ -1,0 +1,60 @@
+<div *ngIf="patient" class="patient-details">
+    <h2>Edit Medical Record for: {{ patient.forname }} {{ patient.surname }}</h2>
+    <div class="notification-container">
+        <app-notification></app-notification>
+    </div>
+
+    <section class="patient-info">
+        <h3>Personal Info (Read Only)</h3>
+        <div class="form-group">
+            <label>First Name:</label>
+            <input [value]="patient.forname" type="text" disabled />
+        </div>
+        <div class="form-group">
+            <label>Last Name:</label>
+            <input [value]="patient.surname" type="text" disabled />
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input [value]="patient.email" type="email" disabled />
+        </div>
+        <div class="form-group">
+            <label>Phone:</label>
+            <input [value]="patient.telNr" type="text" disabled />
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <input [value]="patient.gender" type="text" disabled />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <input [value]="patient.address" type="text" disabled />
+        </div>
+    </section>
+
+    <section class="medical-history">
+        <h3>Medical History</h3>
+        <div class="form-group">
+            <label>Allergies (comma separated):</label>
+            <input [(ngModel)]="patient.medicalRecord!.allergies" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Conditions (comma separated):</label>
+            <input [(ngModel)]="patient.medicalRecord!.conditions" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Previous Treatments (comma separated):</label>
+            <input [(ngModel)]="patient.medicalRecord!.previousTreatments" type="text" />
+        </div>
+    </section>
+
+    <section class="doctor-notes">
+        <h3>Doctor Notes</h3>
+        <textarea [(ngModel)]="patient.medicalRecord!.doctorNotes" rows="4" placeholder="Enter any doctor notes here..."></textarea>
+    </section>
+
+    <div class="actions">
+        <button (click)="updatePatient()">Save Changes</button>
+        <button [routerLink]="['/doctor/patient', patientId]" class="secondary-btn">Cancel</button>
+    </div>
+</div>

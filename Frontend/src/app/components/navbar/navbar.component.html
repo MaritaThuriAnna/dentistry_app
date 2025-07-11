@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="logo" routerLink="/">Smart Dental Office</a>
+  </div>
+
+  <div class="hamburger" (click)="toggleMenu()">&#9776;</div>
+
+  <ul class="nav-links" [ngClass]="{'nav-active': menuOpen}">
+    <!-- Show only if NOT logged in -->
+    <li *ngIf="!isLoggedIn"><a routerLink="/login" [ngClass]="{'active': isActive('/login')}">Login</a></li>  
+
+    <!-- Doctor-specific links -->
+    <ng-container *ngIf="isLoggedIn && isDoctor">
+      <li><a routerLink="/doctor/home" [ngClass]="{'active': isActive('/doctor/home')}"  (click)="toggleMenu()">Home</a></li>
+      <li><a routerLink="/doctor/patients" [ngClass]="{'active': isActive('/doctor/patients')}"  (click)="toggleMenu()">Patients</a></li>
+      <li><a routerLink="/doctor/appointments" [ngClass]="{'active': isActive('/doctor/appointments')}" [queryParams]="{ schedule: 'true'}"  (click)="toggleMenu()">Appointments</a></li>
+      <li><a routerLink="/doctor/xrays" [ngClass]="{'active': isActive('/doctor/xrays')}"  (click)="toggleMenu()">X-Ray Upload</a></li>
+    </ng-container>
+
+    <!-- Patient-specific links -->
+    <ng-container *ngIf="isLoggedIn && isPatient">
+      <li><a routerLink="/patient/home" [ngClass]="{'active': isActive('/patient/home')}"  (click)="toggleMenu()">Home</a></li>
+      <li><a routerLink="/patient/calendar" [ngClass]="{'active': isActive('/patient/calendar')}"  (click)="toggleMenu()">My Appointments</a></li>
+      <li><a routerLink="/patient/profile" [ngClass]="{'active': isActive('/patient/profile')}"  (click)="toggleMenu()">My Profile</a></li>
+    </ng-container>
+
+    <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
+  </ul>
+</nav>

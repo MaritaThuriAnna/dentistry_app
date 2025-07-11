@@ -1,0 +1,74 @@
+<div class="cal-box">
+  <div class="calendar_container">
+    <div class="calendar-controls">
+      <button (click)="prevMonth()">⟵</button>
+      <h2>{{ currentMonthYear | date: 'MMMM yyyy' }}</h2>
+      <button (click)="nextMonth()">⟶</button>
+    </div>
+
+    <div class="calendar-grid">
+      <div class="calendar-day header" *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
+        {{ day }}
+      </div>
+
+      <div class="calendar-day empty" *ngFor="let _ of [].constructor(daysInMonth[0]?.getDay())"></div>
+
+      <div class="calendar-day" *ngFor="let day of daysInMonth" [class.has-appointment]="hasAppointment(day)"
+        (click)="openAppointments(day)">
+        <span>{{ day.getDate() }}</span>
+  
+      </div>
+      
+    </div>
+
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <h3>Appointments on {{ selectedDate }}</h3>
+
+        <div *ngIf="loggedInUserRole === 'PATIENT'">
+          <ul>
+            <li *ngFor="let appointment of selectedDateAppointments">
+              <strong>Patient:</strong> {{ patient?.forname }} {{ patient?.surname }}<br>
+
+              <strong>Doctor:</strong> {{ getDoctorName(appointment.doctorId) }}<br>
+
+              <strong>Date:</strong> {{ appointment.date | date:'medium' }}<br>
+              <strong>Reason:</strong> {{ appointment.reason || 'Not specified' }}<br>
+              <strong>Status:</strong> {{ appointment.status }}<br>
+
+              <div *ngIf="appointment.status === 'PENDING'" class="appointment-actions">
+                <button (click)="acceptAppointment(appointment.id)" class="btn accept">Accept</button>
+                <button (click)="declineAppointment(appointment.id)" class="btn decline">Decline</button>
+              </div>
+
+              <hr>
+            </li>
+          </ul>
+        </div>
+
+
+        <div *ngIf="loggedInUserRole === 'DENTIST'">
+          <ul>
+            <li *ngFor="let appointment of selectedDateAppointments">
+              <strong>Patient:</strong> {{ getPatientName(appointment.patientId) }}<br>
+              <strong>Doctor:</strong> {{ doctor?.forname }} {{ doctor?.surname }}<br>
+              <strong>Status:</strong> {{ appointment.status }}<br>
+              <strong>Date:</strong>
+              <input [(ngModel)]="appointment.date" type="date"
+                [disabled]="!isEditableAppointment(appointment.date)" /><br>
+              <strong>Reason:</strong>
+              <input [(ngModel)]="appointment.reason" type="text"
+                [disabled]="!isEditableAppointment(appointment.date)" /><br>
+              <button (click)="updateAppointment(appointment)" class="btn update"
+                [disabled]="!isEditableAppointment(appointment.date)">
+                Update Appointment
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <button (click)="closeModal()" class="btn close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

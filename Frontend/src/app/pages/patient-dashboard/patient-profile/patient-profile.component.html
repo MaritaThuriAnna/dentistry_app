@@ -1,0 +1,60 @@
+<div *ngIf="patient" class="patient-details">
+    <h2>My Profile</h2>
+    <div class="notification-container">
+        <app-notification></app-notification>
+    </div>
+
+    <section class="patient-info">
+        <h3>Personal Info</h3>
+        <div class="form-group">
+            <label>First Name:</label>
+            <input [(ngModel)]="patient.forname" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Last Name:</label>
+            <input [(ngModel)]="patient.surname" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input [(ngModel)]="patient.email" type="email" />
+        </div>
+        <div class="form-group">
+            <label>Phone:</label>
+            <input [(ngModel)]="patient.telNr" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <input [(ngModel)]="patient.gender" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <input [(ngModel)]="patient.address" type="text" />
+        </div>
+    </section>
+
+    <section class="medical-history">
+        <h3>Medical History (View Only)</h3>
+        <p><strong>Allergies:</strong> {{ patient.medicalRecord?.allergies }}</p>
+        <p><strong>Conditions:</strong> {{ patient.medicalRecord?.conditions }}</p>
+        <p><strong>Previous Treatments:</strong> {{ patient.medicalRecord?.previousTreatments }}</p>
+    </section>
+
+    <section class="doctor-notes">
+        <h3>Doctor Notes</h3>
+        <p>{{ patient.medicalRecord?.doctorNotes }}</p>
+    </section>
+
+    <section class="xray-images">
+        <h3>X-ray Images (View Only)</h3>
+        <div *ngFor="let xray of xrays" class="xray-item">
+            <p><strong>Analysis Result:</strong> {{ xray.analysis }}</p>
+            <p><strong>Upload Date:</strong> {{ xray.uploadDate | date:'medium' }}</p>
+            <img [src]="xray.image" alt="X-ray Image" class="xray-image" />
+            <p><strong>Doctors Note:</strong> {{ xray.doctorNote }}</p>
+        </div>
+    </section>
+
+    <div class="actions">
+        <button (click)="updatePatient()"> Save Changes</button>
+    </div>
+</div>

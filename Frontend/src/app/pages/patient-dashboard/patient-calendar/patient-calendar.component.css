@@ -1,0 +1,7 @@
+.appointment-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
+  }

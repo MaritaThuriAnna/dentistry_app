@@ -1,0 +1,5 @@
+use pip install fastapi uvicorn pillow opencv-python torch torchvision segmentation-models-pytorch ultralytics python-multipart 
+OR
+pip install -r requirements.txt 
+
+start up with : uvicorn app:app --host 0.0.0.0 --port 8000 --reload

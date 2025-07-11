@@ -1,0 +1,54 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 280px;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.notification.success {
+  background: linear-gradient(to right, #28a745, #218838);
+}
+
+.notification.error {
+  background: linear-gradient(to right, #dc3545, #c82333);
+}
+
+.notification.warning {
+  background: linear-gradient(to right, #ffc107, #e0a800);
+  color: black;
+}
+
+.message {
+  flex: 1;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

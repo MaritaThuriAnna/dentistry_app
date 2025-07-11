@@ -1,0 +1,34 @@
+<h2 class="section-title"> Appointments</h2>
+
+<div class="appointment-container" *ngIf="isScheduling">
+
+    <div class="appointment-form">
+        <h3 class="section-subtitle">Schedule an Appointment</h3>
+
+
+        <p *ngIf="selectedPatientId">
+            <strong>Selected Patient:</strong> {{ selectedPatientName }}
+        </p>
+
+        <label for="date">Select Date:</label>
+
+        <mat-form-field appearance="outline" class="custom-datepicker">
+            <mat-label></mat-label>
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="appointmentDate" autocomplete="off"
+                placeholder="Choose a date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 color="primary"></mat-datepicker>
+        </mat-form-field>
+
+        <label for="reason">Appointment Reason:</label>
+        <textarea id="reason" [(ngModel)]="appointmentReason" placeholder="Enter reason for visit..."></textarea>
+
+        <button (click)="scheduleAppointment()">Schedule Appointment</button>
+        <button [routerLink]="['/doctor/patient', selectedPatientId]">Cancel</button>
+    </div>
+</div>
+
+<div *ngIf="!isScheduling" class="center-calendar">
+  <app-appointment-calendar [appointments]="appointments" [doctor]="doctor"  [patients]="patients">
+  </app-appointment-calendar>
+</div>

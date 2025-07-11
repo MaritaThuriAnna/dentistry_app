@@ -1,0 +1,29 @@
+.footer {
+  flex-shrink: 0; 
+  width: 100%;
+  text-align: center;
+  padding: 15px 0; 
+  background-color: #112f4f;
+  color: white;
+  height: 50px; 
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.footer p {
+  margin: 0;
+  padding: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    height: 30px; 
+  }
+
+  .footer p {
+    padding: 5px;
+    font-size: 10px;
+  }
+}

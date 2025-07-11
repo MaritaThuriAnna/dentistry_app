@@ -1,0 +1,9 @@
+<h2>Your Appointments</h2>
+<div class="appointment-container">
+  <app-appointment-calendar
+    [appointments]="appointments"
+    [patient]="patient"
+    [doctors]="doctors"
+    (appointmentDeclined)="onAppointmentDeclined($event)">
+  </app-appointment-calendar>
+</div>

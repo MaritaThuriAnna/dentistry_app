@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "age": 34,
+    "gender": "Male",
+    "contact": {
+      "email": "johndoe@email.com",
+      "phone": "+1 123 456 7890"
+    },
+    "address": "123 Dental St, Smile City",
+    "medicalHistory": {
+      "allergies": "Penicillin",
+      "conditions": [
+        "Diabetes"
+      ],
+      "previousTreatments": [
+        "Root Canal (2022)",
+        "Filling (2021)"
+      ]
+    },
+    "appointments": [
+      {
+        "date": "2025-02-15",
+        "type": "Dental Cleaning",
+        "status": "Completed"
+      },
+      {
+        "date": "2025-03-10",
+        "type": "Checkup",
+        "status": "Upcoming"
+      }
+    ],
+    "xrayRecords": [
+      {
+        "image": "assets/sample-xray.jpg",
+        "analysis": "No cavities detected."
+      }
+    ],
+    "doctorNotes": "Patient needs a follow-up in 6 months."
+  }
+]

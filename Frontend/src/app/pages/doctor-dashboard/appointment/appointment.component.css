@@ -1,0 +1,136 @@
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+  min-height: 730px;
+}
+
+.appointment-form, .appointment-list {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.center-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  align-items: center; 
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+select, input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+mat-form-field {
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+}
+
+mat-label {
+  color: #333 !important; 
+  font-weight: bold;
+}
+
+input[matInput] {
+  color: black !important;
+  background: white !important;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+mat-datepicker-toggle {
+  color: #0056b3 !important; 
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+  background: white !important; 
+  border-radius: 5px;
+}
+
+.mat-mdc-input-element {
+  color: black !important; 
+  background: white !important;
+  font-weight: normal;
+}
+
+.mat-mdc-form-field .mdc-floating-label {
+  color: #333 !important;
+  font-weight: bold;
+}
+
+.mat-mdc-input-element::placeholder {
+  color: #666 !important;
+  opacity: 1;
+}
+
+.mat-mdc-form-field .mdc-notched-outline {
+  border-color: #0056b3 !important;
+}
+
+.mat-mdc-datepicker-toggle {
+  color: #007BFF !important;
+}
+
+.mat-mdc-datepicker-content {
+  background: white !important;
+  color: black !important;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mat-calendar-body-selected {
+  background: #007BFF !important;
+  color: white !important;
+}
+
+.mat-calendar-body-cell-content {
+  color: black !important; 
+}
+
+
+button {
+  background: linear-gradient(to right, #007BFF, #0056b3);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;
+  width: 100%;
+}
+
+button:hover {
+  background: linear-gradient(to right, #0056b3, #003f7f);
+  transform: scale(1.05);
+}
+
+.appointment-list {
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+}
